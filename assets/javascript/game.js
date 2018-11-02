@@ -6,7 +6,11 @@ var currentWord = words[Math.floor(Math.random() * words.length)]
 var guessesNumber = 10
 var currentClue = []
 var newButton = document.createElement("button")
-var targetAgain = document.getElementById("again");
+var newImage = document.createElement("img")
+var targetAgain = document.getElementById("again")
+var targetHearts = document.getElementById("hearts")
+var winCondition = false
+var lossCondition = false
 for (var i = 0; i < currentWord.length; i++) {
     currentClue[i] = "_"
 }
@@ -20,7 +24,9 @@ console.log("number of guesses" + guessesNumber)
 
 function reset() {
     currentClue = []
-    currentWord = []    
+    currentWord = []
+    winCondition = false
+    lossCondition = false
     currentWord = words[Math.floor(Math.random() * words.length)]
     for (var k = 0; k < currentWord.length; k++) {
         currentClue[k] = "_"
@@ -29,14 +35,19 @@ function reset() {
     incorrectGuesses = []
     document.getElementById("guessed-letters").innerHTML = incorrectGuesses.join(", ")
     guessesNumber = 10
-    document.getElementById("guesses-number").innerHTML = guessesNumber
     document.getElementById("end-game").innerHTML = ""
     document.getElementById("again").innerHTML = ""
+    newImage.setAttribute("src", "assets/images/" + guessesNumber + ".png")
+    newImage.setAttribute("id", "hearts-img")
+    targetHearts.appendChild(newImage)
 }
 
 
 document.getElementById("current-word").innerHTML = currentClue.join(" ")
-document.getElementById("guesses-number").innerHTML = guessesNumber
+newImage.setAttribute("src", "assets/images/" + guessesNumber + ".png")
+newImage.setAttribute("id", "hearts-img")
+targetHearts.appendChild(newImage)
+
 
 
 document.onkeyup = function (event) {
@@ -44,27 +55,31 @@ document.onkeyup = function (event) {
     var userInput = event.key.toUpperCase()
 
     for (var j = 0; j < currentWord.length; j++) {
-        if (userInput === currentWord[j]) {
+        if (userInput === currentWord[j] && lossCondition == false && winCondition == false) {
             currentClue[j] = currentWord[j]
             document.getElementById("current-word").innerHTML = currentClue.join(" ")
         }
-        else if (currentWord.indexOf(userInput) == -1 && incorrectGuesses.indexOf(userInput) == -1) {
+        else if (currentWord.indexOf(userInput) == -1 && incorrectGuesses.indexOf(userInput) == -1 && lossCondition == false && winCondition == false) {
             incorrectGuesses.push(userInput)
             document.getElementById("guessed-letters").innerHTML = incorrectGuesses.join(", ")
             guessesNumber--
-            document.getElementById("guesses-number").innerHTML = guessesNumber
+            newImage.setAttribute("src", "assets/images/" + guessesNumber + ".png")
+            newImage.setAttribute("id", "hearts-img")
+            targetHearts.appendChild(newImage)
         }
     }
-    if (currentClue.indexOf("_") === -1) {
+    if (currentClue.indexOf("_") === -1 && winCondition == false) {
         wins++
+        winCondition = true
         document.getElementById("wins-number").innerHTML = wins
         document.getElementById("end-game").innerHTML = "YOU WIN! THE WORD WAS  " + currentWord
         newButton.textContent = "PLAY AGAIN?"
         targetAgain.appendChild(newButton);
         newButton.setAttribute("onclick", "reset()")
     }
-    if (guessesNumber === 0) {
+    if (guessesNumber === 0 && lossCondition == false) {
         losses++
+        lossCondition = true
         document.getElementById("losses-number").innerHTML = losses
         document.getElementById("end-game").innerHTML = "YOU LOSE. THE WORD WAS  " + currentWord
         newButton.textContent = "PLAY AGAIN?"

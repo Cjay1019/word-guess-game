@@ -5,6 +5,7 @@
 
 body {
     background-image: url(../images/hyrule.jpg);
+    background-size: cover;
     font-family: zeldaFont;    
     font-size: 26px;    
     text-align: center;
@@ -22,4 +23,9 @@ body {
 
 header {
     margin: 5% 0;
+}
+
+#hearts-img {
+    width: 100%;
+    height: auto;
 }
