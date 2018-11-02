@@ -1,10 +1,12 @@
-var words = ["filler1", "filler2", "filler3", "filler4", "filler5", "filler6"]
+var words = ["ZELDA", "LINK", "HYRULE", "TRIFORCE", "GANON", "FAIRY", "DEKU", "BOOMERANG", "HOOKSHOT", "BOW", "MASTERSWORD", "BOMB", "GORON", "CUCCO", "EPONA", "OCARINA", "RUPEE", "POTION", "BOOTS", "KOKIRI", "HEART", "KOKIRI", "NAVI", "SHIELD", "TEMPLE", "SKULLTULA", "MEDALLION", "MASK"]
 var incorrectGuesses = []
 var wins = 0
 var losses = 0
 var currentWord = words[Math.floor(Math.random() * words.length)]
 var guessesNumber = 10
 var currentClue = []
+var newButton = document.createElement("button")
+var targetAgain = document.getElementById("again");
 for (var i = 0; i < currentWord.length; i++) {
     currentClue[i] = "_"
 }
@@ -17,6 +19,8 @@ console.log("number of guesses" + guessesNumber)
 // END DEBUGGING================================
 
 function reset() {
+    currentClue = []
+    currentWord = []    
     currentWord = words[Math.floor(Math.random() * words.length)]
     for (var k = 0; k < currentWord.length; k++) {
         currentClue[k] = "_"
@@ -26,6 +30,8 @@ function reset() {
     document.getElementById("guessed-letters").innerHTML = incorrectGuesses.join(", ")
     guessesNumber = 10
     document.getElementById("guesses-number").innerHTML = guessesNumber
+    document.getElementById("end-game").innerHTML = ""
+    document.getElementById("again").innerHTML = ""
 }
 
 
@@ -35,14 +41,14 @@ document.getElementById("guesses-number").innerHTML = guessesNumber
 
 document.onkeyup = function (event) {
 
-    var userInput = event.key
+    var userInput = event.key.toUpperCase()
 
     for (var j = 0; j < currentWord.length; j++) {
         if (userInput === currentWord[j]) {
             currentClue[j] = currentWord[j]
             document.getElementById("current-word").innerHTML = currentClue.join(" ")
         }
-        else if (currentWord.indexOf(userInput) == -1 && incorrectGuesses.indexOf(userInput) == -1){
+        else if (currentWord.indexOf(userInput) == -1 && incorrectGuesses.indexOf(userInput) == -1) {
             incorrectGuesses.push(userInput)
             document.getElementById("guessed-letters").innerHTML = incorrectGuesses.join(", ")
             guessesNumber--
@@ -52,12 +58,18 @@ document.onkeyup = function (event) {
     if (currentClue.indexOf("_") === -1) {
         wins++
         document.getElementById("wins-number").innerHTML = wins
-        reset()
+        document.getElementById("end-game").innerHTML = "YOU WIN! THE WORD WAS  " + currentWord
+        newButton.textContent = "PLAY AGAIN?"
+        targetAgain.appendChild(newButton);
+        newButton.setAttribute("onclick", "reset()")
     }
     if (guessesNumber === 0) {
         losses++
         document.getElementById("losses-number").innerHTML = losses
-        reset()
+        document.getElementById("end-game").innerHTML = "YOU LOSE. THE WORD WAS  " + currentWord
+        newButton.textContent = "PLAY AGAIN?"
+        targetAgain.appendChild(newButton);
+        newButton.setAttribute("onclick", "reset()")
     }
 
 

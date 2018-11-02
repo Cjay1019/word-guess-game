@@ -1,0 +1,25 @@
+@font-face {
+    font-family: zeldaFont;
+    src: url(../fonts/zelda.otf);
+}
+
+body {
+    background-image: url(../images/hyrule.jpg);
+    font-family: zeldaFont;    
+    font-size: 26px;    
+    text-align: center;
+}
+
+#title-pic {
+    width: 100%;
+    height: auto;
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+header {
+    margin: 5% 0;
+}
