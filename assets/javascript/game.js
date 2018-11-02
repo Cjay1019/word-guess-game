@@ -42,7 +42,7 @@ document.onkeyup = function (event) {
             currentClue[j] = currentWord[j]
             document.getElementById("current-word").innerHTML = currentClue.join(" ")
         }
-        else if (currentWord.indexOf(userInput) == -1){
+        else if (currentWord.indexOf(userInput) == -1 && incorrectGuesses.indexOf(userInput) == -1){
             incorrectGuesses.push(userInput)
             document.getElementById("guessed-letters").innerHTML = incorrectGuesses.join(", ")
             guessesNumber--
