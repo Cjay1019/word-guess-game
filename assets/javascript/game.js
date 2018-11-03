@@ -76,6 +76,7 @@ document.onkeyup = function (event) {
         newButton.textContent = "PLAY AGAIN?"
         targetAgain.appendChild(newButton);
         newButton.setAttribute("onclick", "reset()")
+        newButton.setAttribute("id", "again-btn")
     }
     if (guessesNumber === 0 && lossCondition == false) {
         losses++
@@ -85,6 +86,7 @@ document.onkeyup = function (event) {
         newButton.textContent = "PLAY AGAIN?"
         targetAgain.appendChild(newButton);
         newButton.setAttribute("onclick", "reset()")
+        newButton.setAttribute("id", "again-btn")
     }
 
 

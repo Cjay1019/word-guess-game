@@ -7,14 +7,25 @@ body {
     background-image: url(../images/hyrule.jpg);
     background-size: cover;
     font-family: zeldaFont;    
-    font-size: 26px;    
+    font-size: 26px;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;    
     text-align: center;
 }
 
 #title-pic {
     width: 100%;
     height: auto;
+    position: relative;
 }
+
+#title-add {
+    position: absolute;
+    right: 25%;
+    bottom: -5%;
+    color: #ca000c;
+    font-size: xx-large;
+    text-shadow: none;
+    }
 
 .col-centered {
     float: none;
@@ -28,4 +39,17 @@ header {
 #hearts-img {
     width: 100%;
     height: auto;
+}
+
+#again-btn {
+    background-image: url(../images/parch.jpg);
+    border: 1px solid black;
+}
+
+#again-btn:hover {
+    border: 1px solid gray;
+}
+
+input {
+    opacity: 0;
 }
