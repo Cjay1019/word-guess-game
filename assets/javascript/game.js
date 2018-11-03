@@ -50,7 +50,7 @@ targetHearts.appendChild(newImage)
 
 
 
-document.onkeyup = function (event) {
+document.onkeypress = function (event) {
 
     var userInput = event.key.toUpperCase()
 
