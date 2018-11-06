@@ -53,6 +53,7 @@ targetHearts.appendChild(newImage)
 document.onkeyup = function (event) {
 
     var userInput = event.key.toUpperCase()
+    document.getElementById("music").play()
 
     for (var j = 0; j < currentWord.length; j++) {
         if (userInput === currentWord[j] && lossCondition == false && winCondition == false) {
