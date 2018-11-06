@@ -88,9 +88,10 @@ document.onkeyup = function (event) {
         newButton.setAttribute("onclick", "reset()")
         newButton.setAttribute("id", "again-btn")
     }
-
-
-
+    if (event.keyCode === 13) {
+        document.getElementById("again-btn").click();
+        
+    }
 
 
 
