@@ -11,6 +11,7 @@ var targetAgain = document.getElementById("again")
 var targetHearts = document.getElementById("hearts")
 var winCondition = false
 var lossCondition = false
+var search = new RegExp("^[A-Za-z]$")
 for (var i = 0; i < currentWord.length; i++) {
     currentClue[i] = "_"
 }
@@ -60,7 +61,7 @@ document.onkeyup = function (event) {
             currentClue[j] = currentWord[j]
             document.getElementById("current-word").innerHTML = currentClue.join(" ")
         }
-        else if (currentWord.indexOf(userInput) == -1 && incorrectGuesses.indexOf(userInput) == -1 && lossCondition == false && winCondition == false) {
+        else if (currentWord.indexOf(userInput) == -1 && incorrectGuesses.indexOf(userInput) == -1 && lossCondition == false && winCondition == false && search.test(userInput) == true) {
             incorrectGuesses.push(userInput)
             document.getElementById("guessed-letters").innerHTML = incorrectGuesses.join(", ")
             guessesNumber--
@@ -91,7 +92,7 @@ document.onkeyup = function (event) {
     }
     if (event.keyCode === 13) {
         document.getElementById("again-btn").click();
-        
+
     }
 
 
