@@ -4,8 +4,8 @@
 }
 
 body {
-    background-color: gray;
     background-image: url(../images/hyrule.jpg);    
+    background-color: gray;
     background-size: cover;
     background-repeat: no-repeat;
 
