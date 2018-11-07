@@ -4,8 +4,11 @@
 }
 
 body {
-    background-image: url(../images/hyrule.jpg);
+    background-color: gray;
+    background-image: url(../images/hyrule.jpg);    
     background-size: cover;
+    background-repeat: no-repeat;
+
     font-family: zeldaFont;    
     font-size: 26px;
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;    
